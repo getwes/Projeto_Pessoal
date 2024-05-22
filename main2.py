@@ -18,6 +18,17 @@ titulos = driver.find_elements(By.XPATH,"//a[@class='nome-produto']")
 #Coletando os preços dos produtos
 precos = driver.find_elements(By.XPATH,"//strong[@class='preco-promocional']")
 
+#criando a planilha
+workbook = openpyxl.Workbook()
+#criando a pagina 'produtos'
+workbook.create_sheet('perifericos')
+#selecionando a pagina produtos
+sheet_perifericos = workbook['perifericos']
+sheet_perifericos['A1'].value = 'produto'
+sheet_perifericos['B1'].value = 'preço'
+# inserir os titulos e preços na planilha ##zip para que se um titulo não tiver um preço não é atribuido
 for titulo, preco in zip(titulos, precos,):
-    for test in(titulo.text,preco.text):
-        print(test)
+    sheet_perifericos.append([titulo.text,preco.text])
+        
+#salvar
+workbook.save('perifericos.xlsx')
