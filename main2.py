@@ -31,4 +31,4 @@ for titulo, preco in zip(titulos, precos,):
     sheet_perifericos.append([titulo.text,preco.text])
         
 #salvar
-workbook.save('perifericos.xlsx')
+workbook.save('./arquivos/perifericos.xlsx')

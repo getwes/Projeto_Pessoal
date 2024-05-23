@@ -25,4 +25,4 @@ for titulo, preco in zip(titulos, precos):
     sheet_produtos.append([titulo.text,preco.text])
         
 #salvar
-workbook.save('produtos.xlsx')
+workbook.save('./arquivos/produtos.xlsx')
