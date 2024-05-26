@@ -1,19 +1,18 @@
-import os
-import pandas as pd #pip install pandas
+from openpyxl import load_workbook
+import openpyxl
 
-#import main2
-#import main3
-#print(main2,main3)
 
-data_arquivo_folder = 'arquivos/'
+planilha_perifericos = load_workbook('./arquivos/perifericos.xlsx')
+pagina_perifericos = planilha_perifericos['perifericos']
 
-df = []
+for item_perifierico in pagina_perifericos.iter_rows(min_row=2,values_only=True):
+    print(item_perifierico)
 
-for file in os.listdir(data_arquivo_folder):
-    if file.endswith('.xlsx'):
-        print('loading file{}...'.format(file))
-        df.append(pd.read_excel(os.path.join(data_arquivo_folder, file)))
-print(len(df))
 
-df_principal = pd.concat(df, axis=0)
-df_principal.to_excel('arquivos/master_store.xlsx', index=False)
+planilha_produtos = load_workbook('./arquivos/produtos.xlsx')
+pagina_produtos = planilha_produtos['produtos']
+
+for item_produto in pagina_produtos.iter_rows(min_row=2,values_only=True):
+    print(item_produto)
+   
+
